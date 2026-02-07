@@ -3,180 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uzzal | Developer & Explorer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Uzzal Sarker | Digital Archive</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* 2026 Design System */
         :root {
-            --bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --accent: #6366f1;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
+            --bg: #0b0f1a;
+            --glass: rgba(20, 26, 42, 0.8);
+            --border: rgba(255, 255, 255, 0.08);
+            --accent: #7c3aed;
+            --accent-glow: rgba(124, 58, 237, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
         }
 
+        * { box-sizing: border-box; }
         body {
+            margin: 0;
+            padding: 0;
             background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Inter', -apple-system, sans-serif;
-            line-height: 1.6;
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
         }
 
-        .glass {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
+        /* Layout Engine */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .hero-section {
-            padding: 100px 0 60px;
-            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent);
+        .flex-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 40px;
         }
 
-        .status-badge {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            padding: 5px 12px;
-            border-radius: 50px;
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-        }
+        .main-content { flex: 1.5; min-width: 320px; }
+        .side-content { flex: 1; min-width: 320px; }
 
-        .wiki-legacy {
-            border-left: 3px solid #e1e1e1;
-            padding-left: 20px;
-            font-style: italic;
-            color: var(--text-dim);
-        }
-
-        .hobby-tag {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            margin: 4px;
-            display: inline-block;
-            transition: 0.3s;
-        }
-
-        .hobby-tag:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .project-card {
-            transition: all 0.3s ease;
+        /* Glassmorphism Components */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
             height: 100%;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        .glass-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        /* Typography */
+        h1 { font-size: 3.5rem; margin: 0; letter-spacing: -2px; line-height: 1; }
+        h3 { color: var(--accent); margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        p { color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; }
+
+        /* Hero Header */
+        .hero {
+            padding: 120px 0 60px;
+            text-align: center;
+            background: radial-gradient(circle at 50% -20%, var(--accent-glow), transparent 70%);
+        }
+
+        .badge {
+            background: var(--accent-glow);
+            color: #c084fc;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(124, 58, 237, 0.5);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Wiki Legacy Styling */
+        .legacy-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid #475569;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* Skill Pills */
+        .tag-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Modern Footer */
+        footer {
+            margin-top: 80px;
+            padding-bottom: 40px;
+            text-align: center;
         }
 
         .footer-pill {
-            background: rgba(0, 0, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            background: var(--glass);
+            padding: 10px 25px;
             border-radius: 50px;
-            padding: 15px 30px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            gap: 20px;
+        }
+
+        .social-icon { color: var(--text); text-decoration: none; font-size: 1.2rem; transition: 0.2s; }
+        .social-icon:hover { color: var(--accent); transform: scale(1.1); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .flex-grid { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass m-3">
+    <section class="hero">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">UZZAL.DEV</a>
-            <div class="ms-auto">
-                <a href="https://github.com" class="text-white me-3"><i class="fab fa-github"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero-section text-center">
-        <div class="container">
-            <span class="status-badge mb-3 d-inline-block">Always Compiling New Potential</span>
-            <h1 class="display-3 fw-bold mb-4">Code. Learn. <span style="color: var(--accent);">Repeat.</span></h1>
-            <p class="lead text-secondary mx-auto" style="max-width: 700px;">
-                I build digital solutions and push the boundaries of what I knew yesterday. A perpetual student of technology, logic, and storytelling.
+            <div class="badge">Status: Evolving Daily</div>
+            <h1>Uzzal Sarker</h1>
+            <p style="max-width: 600px; margin: 20px auto;">
+                Developer by trade, explorer by nature. I spend my days writing code and my nights pushing the boundaries of my own potential.
             </p>
         </div>
     </section>
 
-    <div class="container mb-5">
-        <div class="row g-4">
-            <div class="col-md-7">
-                <div class="glass p-4 h-100">
-                    <h3 class="mb-4 text-accent"><i class="fas fa-terminal me-2 text-primary"></i> The Profile</h3>
-                    <p>I thrive on the challenge of a blank editor. To me, coding isn't just a job—it's the primary way I explore my own potential. I’m currently focused on Laravel, modern UI patterns, and optimizing system logic.</p>
+    <div class="container">
+        <div class="flex-grid">
+            
+            <div class="main-content">
+                <div class="glass-card">
+                    <h3><i class="fas fa-fingerprint"></i> The Narrative</h3>
+                    <p>
+                        I’ve always been driven by a singular question: <em>How does it work?</em> This curiosity led me from curating the world's knowledge to building the world's tools. I thrive on the challenge of learning complex systems and refining them into elegant solutions.
+                    </p>
                     
-                    <div class="wiki-legacy my-4">
-                        <small class="d-block mb-1 text-uppercase fw-bold">Wikipedia Contributor (Retired)</small>
-                        "Years spent curating collective knowledge taught me the value of precision and sourcing. Now, I apply that same rigor to clean code."
+                    <div class="legacy-box">
+                        <small style="color: var(--accent); font-weight: bold; text-transform: uppercase;">Wikipedia Heritage</small>
+                        <p style="margin: 5px 0 0 0; font-size: 0.95rem;">
+                            I served as a dedicated contributor, curating and verifying information for the global community. While I’ve stepped back from active editing, the discipline of rigorous documentation and accuracy remains the backbone of my coding philosophy.
+                        </p>
                     </div>
 
-                    <div class="mt-4">
-                        <span class="hobby-tag"><i class="fas fa-book me-1"></i> Books</span>
-                        <span class="hobby-tag"><i class="fas fa-film me-1"></i> Cinema</span>
-                        <span class="hobby-tag"><i class="fas fa-tv me-1"></i> Anime</span>
-                        <span class="hobby-tag"><i class="fas fa-lightbulb me-1"></i> Continuous Learning</span>
+                    <p>Interests that fuel my logic:</p>
+                    <div class="tag-group">
+                        <div class="tag"><i class="fas fa-book"></i> Hard Sci-Fi</div>
+                        <div class="tag"><i class="fas fa-film"></i> Neo-Noir Cinema</div>
+                        <div class="tag"><i class="fas fa-tv"></i> Seinen Anime</div>
+                        <div class="tag"><i class="fas fa-brain"></i> System Architecture</div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-5">
-                <div class="glass p-4 h-100">
-                    <h3 class="mb-4 text-accent"><i class="fas fa-code me-2 text-primary"></i> Stack</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <span>PHP / Laravel</span>
-                                <span class="text-secondary">90%</span>
-                            </div>
-                            <div class="progress" style="height: 6px; background: #334155;">
-                                <div class="progress-bar bg-primary" style="width: 90%"></div>
-                            </div>
-                        </li>
-                        <li class="mb-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <span>JavaScript / jQuery</span>
-                                <span class="text-secondary">85%</span>
-                            </div>
-                            <div class="progress" style="height: 6px; background: #334155;">
-                                <div class="progress-bar bg-info" style="width: 85%"></div>
-                            </div>
-                        </li>
-                        <li class="mb-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <span>SQL / Optimization</span>
-                                <span class="text-secondary">80%</span>
-                            </div>
-                            <div class="progress" style="height: 6px; background: #334155;">
-                                <div class="progress-bar bg-warning" style="width: 80%"></div>
-                            </div>
-                        </li>
-                    </ul>
+            <div class="side-content">
+                <div class="glass-card">
+                    <h3><i class="fas fa-layer-group"></i> Capability Stack</h3>
+                    <p>Current focus areas in development:</p>
+                    
+                    <div style="margin-top: 25px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+                            <span>Laravel / PHP</span>
+                            <span style="color: var(--accent)">Advanced</span>
+                        </div>
+                        <div style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 20px;">
+                            <div style="width: 92%; height: 100%; background: var(--accent); border-radius: 10px; box-shadow: 0 0 10px var(--accent);"></div>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+                            <span>JS / Modern UI</span>
+                            <span style="color: var(--accent)">Fluid</span>
+                        </div>
+                        <div style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 20px;">
+                            <div style="width: 85%; height: 100%; background: var(--accent); border-radius: 10px; box-shadow: 0 0 10px var(--accent);"></div>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+                            <span>Database Design</span>
+                            <span style="color: var(--accent)">Solid</span>
+                        </div>
+                        <div style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px;">
+                            <div style="width: 78%; height: 100%; background: var(--accent); border-radius: 10px; box-shadow: 0 0 10px var(--accent);"></div>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.85rem; margin-top: 30px;">
+                        <em>Currently exploring: AI Integration & Scalable Microservices.</em>
+                    </p>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <footer class="container py-5">
-        <div class="footer-pill glass d-flex flex-column flex-md-row justify-content-between align-items-center">
-            <div class="text-center text-md-start">
-                <p class="mb-0 fw-bold">Uzzal Sarker</p>
-                <small class="text-secondary">Curating logic & learning daily.</small>
+    <footer>
+        <div class="container">
+            <div class="footer-pill">
+                <a href="https://github.com" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:contact@uzzal.dev" class="social-icon"><i class="fas fa-envelope"></i></a>
             </div>
-            <div class="mt-3 mt-md-0">
-                <a href="mailto:your@email.com" class="btn btn-outline-light btn-sm rounded-pill px-4">Let's Connect</a>
-            </div>
-        </div>
-        <div class="text-center mt-4">
-            <small class="text-secondary">&copy; 2026 Archive. Built with passion and persistent curiosity.</small>
+            <p style="font-size: 0.8rem; margin-top: 20px;">&copy; 2026 Archive. Built for the future.</p>
         </div>
     </footer>
 
